@@ -12,6 +12,7 @@ app.get("/", (req, res, next) => {
 });
 
 app.post("/send", upload.single("anexo"), (req, res, next) => {
+  console.log("chegou");
   const nome = req.body.nome;
   const email = req.body.email;
   const telefone = req.body.telefone;
@@ -19,6 +20,7 @@ app.post("/send", upload.single("anexo"), (req, res, next) => {
   require("./nodemail")(email, nome, telefone, mensagem)
     .then((response) => res.json(response))
     .catch((error) => res.json(error));
+  console.log("saiu");
 });
 
 const server = http.createServer(app);
