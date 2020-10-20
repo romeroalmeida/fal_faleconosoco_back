@@ -4,6 +4,14 @@ const app = express();
 const bodyParser = require("body-parser");
 const upload = require("multer")();
 
+app.all("*", function (req, res, next) {
+  var origin = req.get("origin");
+  res.header("Access-Control-Allow-Origin", origin);
+  res.header("Access-Control-Allow-Headers", "X-Requested-With");
+  res.header("Access-Control-Allow-Headers", "Content-Type");
+  next();
+});
+
 const cors = require("cors");
 app.use((req, res, next) => {
   //Qual site tem permissão de realizar a conexão, no exemplo abaixo está o "*" indicando que qualquer site pode fazer a conexão
