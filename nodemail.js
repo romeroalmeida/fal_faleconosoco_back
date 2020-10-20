@@ -1,22 +1,29 @@
 const mailer = require("nodemailer");
 
-module.exports = (email, nome, mensagem, anexo) => {
+module.exports = (email, nome, telefone, mensagem, anexo) => {
   const smtpTransport = mailer.createTransport({
-    host: "smtp.umbler.com",
+    host: "smtp-relay.sendinblue.com",
     port: 587,
     secure: false, //SSL/TLS
     auth: {
-      user: "contato@luiztools.com.br",
-      pass: "XXXXXX",
+      user: "contato@falrene.com.br",
+      pass: "NTQsvyW28CVAFjJ0",
     },
   });
 
   const mail = {
-    from: "Prof. Luiz <contato@luiztools.com.br>",
-    to: email,
+    from: `Contato Site ${email}`,
+    to: "contato@falrene.com.br",
     subject: `${nome} te enviou uma mensagem`,
+    telefone: telefone,
     text: mensagem,
-    //html: "<b>Opcionalmente, pode enviar como HTML</b>"
+    html: `
+      <h1  style="color:#660000;">${nome}</h1>
+      <p>E-mail: <b> ${email}</b><br />
+      <p>Telefone:<b> ${telefone}</b></p><br />
+      <p>Mensagem: <b>${mensagem}</b></p>
+
+    `,
   };
 
   if (anexo) {
@@ -39,5 +46,6 @@ module.exports = (email, nome, mensagem, anexo) => {
         smtpTransport.close();
         return reject(error);
       });
+    console.log(mail);
   });
 };

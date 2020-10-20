@@ -12,17 +12,18 @@ app.get("/", (req, res, next) => {
 });
 
 app.post("/send", upload.single("anexo"), (req, res, next) => {
-  console.log("chegou");
   const nome = req.body.nome;
   const email = req.body.email;
-  const telefone = req.body.telefone;
   const mensagem = req.body.mensagem;
-  require("./nodemail")(email, nome, telefone, mensagem)
+  const telefone = req.body.telefone;
+  const anexo = req.file;
+
+  require("./nodemail")(email, nome, telefone, mensagem, anexo)
     .then((response) => res.json(response))
     .catch((error) => res.json(error));
-  console.log("saiu");
+  console.log("aqui");
 });
 
 const server = http.createServer(app);
-server.listen(8080);
-console.log("Estou pronto ...");
+server.listen(3030);
+console.log("Servidor escutando na porta 3030...");
