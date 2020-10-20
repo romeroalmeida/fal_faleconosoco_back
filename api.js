@@ -4,8 +4,17 @@ const app = express();
 const bodyParser = require("body-parser");
 const upload = require("multer")();
 
-app.use(require("cors")());
+const cors = require("cors");
 app.use(bodyParser.json());
+
+app.use((req, res, next) => {
+  //Qual site tem permissão de realizar a conexão, no exemplo abaixo está o "*" indicando que qualquer site pode fazer a conexão
+  res.header("Access-Control-Allow-Origin", "http://falrene.com.br");
+  //Quais são os métodos que a conexão pode realizar na API
+  res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE");
+  app.use(cors());
+  next();
+});
 
 app.get("/", (req, res, next) => {
   res.json({ message: "Tudo ok por aqui!" });
@@ -26,4 +35,3 @@ app.post("/send", upload.single("anexo"), (req, res, next) => {
 
 const server = http.createServer(app);
 server.listen(3030);
-console.log("Servidor escutando na porta 3030...");
