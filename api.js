@@ -5,8 +5,6 @@ const bodyParser = require("body-parser");
 const upload = require("multer")();
 
 const cors = require("cors");
-app.use(bodyParser.json());
-
 app.use((req, res, next) => {
   //Qual site tem permissão de realizar a conexão, no exemplo abaixo está o "*" indicando que qualquer site pode fazer a conexão
   res.header("Access-Control-Allow-Origin", "*");
@@ -15,6 +13,7 @@ app.use((req, res, next) => {
   app.use(cors());
   next();
 });
+app.use(bodyParser.json());
 
 app.get("/", (req, res, next) => {
   res.json({ message: "Tudo ok por aqui!" });
