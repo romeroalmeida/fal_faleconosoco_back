@@ -6,8 +6,9 @@ module.exports = (email, nome, telefone, mensagem, anexo) => {
     port: 587,
     secure: false, //SSL/TLS
     auth: {
-      user: "contato@falrene.com.br",
-      pass: "NTQsvyW28CVAFjJ0",
+      user: "romerobm@gmail.com",
+      pass:
+        "xsmtpsib-f9ced490a64abb86c3f180b4702c927581d0a6592241d8db8a6d33932ff765de-pZwKnMg8LsONG2Ey",
     },
   });
 
