@@ -13,7 +13,7 @@ module.exports = (email, nome, telefone, mensagem, anexo) => {
   });
 
   const mail = {
-    from: `Contato Site ${email}`,
+    from: `Contato Site 'contato@falrene.com.br'`,
     to: "contato@falrene.com.br",
     subject: `${nome} te enviou uma mensagem`,
     telefone: telefone,
