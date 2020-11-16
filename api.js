@@ -4,7 +4,11 @@ const app = express();
 const bodyParser = require("body-parser");
 const upload = require("multer")();
 
-app.use(require("cors")());
+app.use(
+  require("cors")({
+    origin: "https://www.falrene.com.br",
+  })
+);
 
 app.use(bodyParser.json());
 
